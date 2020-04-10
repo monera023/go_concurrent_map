@@ -61,6 +61,21 @@ func TestGet(t *testing.T) {
   }
 }
 
+func TestRemove(t *testing.T) {
+  m := NewConcurrentMap()
+  manUtd := FootballClub{"Man UTD"}
+  liverpool := FootballClub{"Liverpool FC"}
+  m.Add("man_utd", manUtd)
+  m.Add("liverpool", liverpool)
+
+  m.Remove("man_utd")
+
+  _, ok := m.Get("man_utd")
+  if ok == true {
+    t.Error("Deleted Value should not be present")
+  }
+}
+
 func TestConcurrent(t *testing.T) {
   m := NewConcurrentMap()
   ch := make(chan int)
