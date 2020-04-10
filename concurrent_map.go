@@ -33,7 +33,7 @@ func (m ConcurrentMap) Add(key string, value interface{}) {
 func (m ConcurrentMap) GetShard(key string) *Shard{
   h := fnv.New32a()
   h.Write([]byte(key))
-  index := h.Sum32() % 10
+  index := h.Sum32() % 32
   return m[index]
 }
 
